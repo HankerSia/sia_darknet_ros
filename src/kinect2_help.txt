@@ -1,0 +1,61 @@
+
+https://github.com/code-iai/iai_kinect2/issues/193
+you could look into the code of the kinct2_viewer::createCloud and kinct2_viewer::createLookup. That code calculates the real world coordinates from the depth image.
+
+
+使用kinect2_bridge时, 
+对于qhd, camera_info 位于话题/kinect2/qhd/camera_info.  可以从该话题中获取到fx, fy, cx, cy等参数
+可以使用rostopic echo /kinect2/qhd/camera_info查看该话题
+kinect2_view中kinct2_viewer::createCloud and kinct2_viewer::createLookup 包含了对该话题的相关解析代码
+
+header: 
+  seq: 715
+  stamp: 
+    secs: 1486723883
+    nsecs: 888738569
+  frame_id: kinect2_rgb_optical_frame
+height: 540
+width: 960
+distortion_model: plumb_bob
+D: [0.05626844117093032, -0.0741991413086948, 0.0014250797540545752, -0.0016951722389720336, 0.024107681263086548]
+K: [529.9732789120519, 0.0, 477.4416333879422, 0.0, 526.9663404399863, 261.8692914553029, 0.0, 0.0, 1.0]
+R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+P: [529.9732789120519, 0.0, 477.4416333879422, 0.0, 0.0, 526.9663404399863, 261.8692914553029, 0.0, 0.0, 0.0, 1.0, 0.0]
+binning_x: 0
+binning_y: 0
+roi: 
+  x_offset: 0
+  y_offset: 0
+  height: 0
+  width: 0
+  do_rectify: False
+
+
+kinect2_bridge从freenect驱动中获取camerainfo信息, 然后发布到话题中
+cameraMatrixColor矩阵为3x3, 就是话题中的K矩阵, 
+[529.9732789120519, 0.0, 				477.4416333879422,
+ 0.0, 				526.9663404399863, 	261.8692914553029,
+ 0.0, 				0.0, 				1.0]
+
+    const float fx = 1.0f / cameraMatrixColor.at<double>(0, 0);	//
+    const float fy = 1.0f / cameraMatrixColor.at<double>(1, 1);
+    const float cx = cameraMatrixColor.at<double>(0, 2);
+    const float cy = cameraMatrixColor.at<double>(1, 2);
+
+
+
+在kinect_bridge中打印出来
+ir fx=366.050812, fy=366.050812, cx=254.888596, cy=206.834198
+color fx=1081.372070, fy=1081.372070, cx=959.500000, cy=539.500000
+
+
+
+
+
+
+
+
+
+
+
+

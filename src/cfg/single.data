@@ -1,0 +1,6 @@
+classes= 1
+train  = /home/pjreddie/data/coco/trainvalno5k.txt
+names = /home/robot/catkin_hanker/src/sia_darknet_ros/src/data/single.names
+backup = /home/pjreddie/backup/
+
+

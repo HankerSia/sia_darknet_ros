@@ -1,0 +1,6 @@
+classes= 6
+train  = /home/robot/darknet/scripts/2007_train.txt
+//valid  = /home/pjreddie/data/voc/2007_test.txt
+names  = /home/robot/catkin_hanker/src/sia_darknet_ros/src/data/voc.names
+backup = /home/robot/darknet/results/
+

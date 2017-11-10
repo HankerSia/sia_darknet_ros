@@ -1,0 +1,7 @@
+classes= 20
+train  = /home/ljw/workspace/image/darknet/voc/train.txt
+valid  = /home/ljw/workspace/image/darknet/voc/2007_test.txt
+results = /home/ljw/workspace/image/darknet-dev/results-yolo-voc
+names = data/voc.names
+backup = /home/ljw/workspace/image/darknet-dev/backup
+
