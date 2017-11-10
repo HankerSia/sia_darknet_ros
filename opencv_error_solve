@@ -1,3 +1,4 @@
+Some stange opencv ERRORS:
 i found that the sia_darknet_ros uses opencv 3.2, so if you want build this package, please run commands as follow:
 
 cd /opt/ros/kinetic/share/cv_bridge/cmake/ && sudo gedit cv_bridgeConfig.cmake
